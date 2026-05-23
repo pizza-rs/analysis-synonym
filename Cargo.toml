@@ -2,7 +2,7 @@
 name = "pizza-analysis-synonym"
 version = "0.1.0"
 edition = "2021"
-description = "Dynamic synonym filter with file-based loading and hot-reload support."
+description = "Synonym expansion and graph-based synonym plugin for INFINI Pizza"
 license = "MIT"
 
 [dependencies]
