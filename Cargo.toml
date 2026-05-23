@@ -1,0 +1,16 @@
+[package]
+name = "pizza-analysis-synonym"
+version = "0.1.0"
+edition = "2021"
+description = "Dynamic synonym filter with file-based loading and hot-reload support."
+license = "MIT"
+
+[dependencies]
+pizza-engine = { path = "../../lib/engine", default-features = false }
+hashbrown = { version = "0.14", default-features = false }
+
+[features]
+default = ["std"]
+std = ["pizza-engine/std"]
+
+[workspace]
