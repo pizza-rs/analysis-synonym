@@ -109,7 +109,7 @@ dependencies = [
 [[package]]
 name = "cedarwood"
 version = "0.4.6"
-source = "git+https://github.com/infinilabs/cedarwood?branch=main#fc87174560fdbdbe75772adbfb517cf3e11826d9"
+source = "git+https://github.com/pizza-rs/cedarwood?branch=main#ebaf5d31aa0fc4b6c09b38e726b222ac8ba673f3"
 dependencies = [
  "proc-macro2",
  "serde",
@@ -239,11 +239,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "fst-no-std"
+version = "0.4.8"
+source = "git+https://github.com/pizza-rs/fst-no-std?branch=main#3addc765c752ab150db9076799abeb1eb825b2c6"
+dependencies = [
+ "hashbrown 0.14.5",
+ "utf8-ranges",
+]
+
+[[package]]
 name = "fst-regex"
 version = "0.3.0"
-source = "git+https://github.com/infinilabs/fst-regex?branch=main#efcae1d86a313f44b1393b0c6433885a376f3abf"
+source = "git+https://github.com/pizza-rs/fst-regex?branch=main#efcae1d86a313f44b1393b0c6433885a376f3abf"
 dependencies = [
- "fst-no-std",
+ "fst-no-std 0.4.8 (git+https://github.com/infinilabs/fst-no-std?branch=main)",
  "hashbrown 0.14.5",
  "regex-syntax",
  "utf8-ranges",
@@ -491,12 +500,13 @@ version = "0.1.0"
 dependencies = [
  "hashbrown 0.14.5",
  "pizza-engine",
+ "spin",
 ]
 
 [[package]]
 name = "pizza-common"
 version = "0.1.0"
-source = "git+https://pizza.rs-common?branch=main#60ff2901bd302777b8c754cfd0bc436fac377838"
+source = "git+https://github.com/pizza-rs/common?branch=main#60ff2901bd302777b8c754cfd0bc436fac377838"
 dependencies = [
  "bytes",
  "camino",
@@ -526,7 +536,7 @@ dependencies = [
  "convert_case",
  "derivative",
  "educe",
- "fst-no-std",
+ "fst-no-std 0.4.8 (git+https://github.com/pizza-rs/fst-no-std?branch=main)",
  "fst-regex",
  "hashbrown 0.14.5",
  "heapless",

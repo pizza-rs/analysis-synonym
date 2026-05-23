@@ -8,6 +8,7 @@ license = "MIT"
 [dependencies]
 pizza-engine = { path = "../../lib/engine", default-features = false }
 hashbrown = { version = "0.14", default-features = false }
+spin = { version = "0.9", default-features = false, features = ["rwlock"] }
 
 [features]
 default = ["std"]

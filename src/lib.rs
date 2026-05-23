@@ -5,7 +5,18 @@
 //! - File-based synonym loading (Solr and WordNet formats)
 //! - Multi-word synonym graph support
 //! - Configurable expand/contract modes
-//! - Hot-reload capability (via `reload()`)
+//! - **Hot-reload** — atomically swap synonym maps without restarting or blocking queries
+//!
+//! # Hot-Reload
+//!
+//! ```ignore
+//! let filter = SynonymFilter::new(initial_map, true);
+//! let handle = filter.reload_handle();
+//!
+//! // From a file-watcher or config reload endpoint:
+//! let new_map = SynonymParser::new().parse(&new_text);
+//! handle.reload(new_map); // atomic, lock-free for readers
+//! ```
 //!
 //! # Synonym Format (Solr)
 //!
@@ -31,6 +42,6 @@ mod parser;
 
 pub mod register;
 
-pub use filter::{SynonymFilter, SynonymGraphFilter, SynonymMode};
+pub use filter::{SynonymFilter, SynonymGraphFilter, SynonymMode, SynonymReloadHandle};
 pub use parser::{SynonymFormat, SynonymMap, SynonymParser, SynonymRule};
 pub use register::register_all;

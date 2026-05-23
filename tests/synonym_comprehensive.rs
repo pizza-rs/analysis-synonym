@@ -243,14 +243,35 @@ fn filter_empty_token() {
 
 #[test]
 fn filter_reload() {
-    let mut f = SynonymFilter::empty();
+    let f = SynonymFilter::empty();
     let p = SynonymParser::new();
     let map = p.parse("fast, quick");
-    f.reload(map);
+    f.reload(map); // hot-reload: no &mut needed!
 
     let mut token = make_token("fast");
     let (_, extra) = f.filter(&mut token);
     assert!(extra.is_some());
+}
+
+#[test]
+fn filter_reload_via_handle() {
+    let f = SynonymFilter::empty();
+    let handle = f.reload_handle();
+
+    // Initially empty — no synonyms
+    let mut token = make_token("fast");
+    let (_, extra) = f.filter(&mut token);
+    assert!(extra.is_none());
+
+    // Hot-reload via external handle
+    let map = SynonymParser::new().parse("fast, quick, speedy");
+    handle.reload(map);
+
+    // Now synonyms are active
+    let mut token = make_token("fast");
+    let (_, extra) = f.filter(&mut token);
+    assert!(extra.is_some());
+    assert_eq!(extra.unwrap().len(), 2); // quick + speedy
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -301,14 +322,32 @@ fn graph_filter_empty_token() {
 
 #[test]
 fn graph_filter_reload() {
-    let mut f = SynonymGraphFilter::empty();
+    let f = SynonymGraphFilter::empty();
     let p = SynonymParser::new();
     let map = p.parse("big, large");
-    f.reload(map);
+    f.reload(map); // hot-reload: no &mut needed!
 
     let mut token = make_token("big");
     let (_, extra) = f.filter(&mut token);
     assert!(extra.is_some());
+}
+
+#[test]
+fn graph_filter_reload_via_handle() {
+    let f = SynonymGraphFilter::empty();
+    let handle = f.reload_handle();
+
+    let map = SynonymParser::new().parse("ny => new york");
+    handle.reload(map);
+
+    let mut token = make_token("ny");
+    let (_, extra) = f.filter(&mut token);
+    assert!(extra.is_some());
+    let tokens = extra.unwrap();
+    // "new york" → 2 tokens: "new" at pos 0, "york" at pos 1
+    assert_eq!(tokens.len(), 2);
+    assert_eq!(tokens[0].term.as_ref(), "new");
+    assert_eq!(tokens[1].term.as_ref(), "york");
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
