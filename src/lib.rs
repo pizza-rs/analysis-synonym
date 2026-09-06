@@ -42,6 +42,12 @@ mod parser;
 
 pub mod register;
 
-pub use filter::{SynonymFilter, SynonymGraphFilter, SynonymMode, SynonymReloadHandle};
-pub use parser::{SynonymFormat, SynonymMap, SynonymParser, SynonymRule};
+pub use filter::SynonymFilter;
+pub use filter::SynonymGraphFilter;
+pub use filter::SynonymMode;
+pub use filter::SynonymReloadHandle;
+pub use parser::SynonymFormat;
+pub use parser::SynonymMap;
+pub use parser::SynonymParser;
+pub use parser::SynonymRule;
 pub use register::register_all;

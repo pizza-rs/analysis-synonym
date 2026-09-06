@@ -141,8 +141,8 @@ impl SynonymParser {
                     .collect();
 
                 if !source.is_empty() && !replacements.is_empty() {
-                    let is_multi_word = source.contains(' ')
-                        || replacements.iter().any(|r| r.contains(' '));
+                    let is_multi_word =
+                        source.contains(' ') || replacements.iter().any(|r| r.contains(' '));
                     map.insert(
                         source,
                         SynonymRule {
@@ -227,10 +227,7 @@ impl SynonymParser {
             let word = self.normalize_term(word);
 
             if !word.is_empty() {
-                synsets
-                    .entry(synset_id)
-                    .or_insert_with(Vec::new)
-                    .push(word);
+                synsets.entry(synset_id).or_insert_with(Vec::new).push(word);
             }
         }
 

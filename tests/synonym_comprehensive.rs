@@ -1,10 +1,15 @@
 //! Comprehensive tests for pizza-analysis-synonym (synonym expansion/contraction).
 
-use pizza_analysis_synonym::{
-    SynonymFilter, SynonymFormat, SynonymGraphFilter, SynonymMap, SynonymMode, SynonymParser,
-    SynonymRule,
-};
-use pizza_engine::analysis::{AnalysisFactory, Token, TokenFilter};
+use pizza_analysis_synonym::SynonymFilter;
+use pizza_analysis_synonym::SynonymFormat;
+use pizza_analysis_synonym::SynonymGraphFilter;
+use pizza_analysis_synonym::SynonymMap;
+use pizza_analysis_synonym::SynonymMode;
+use pizza_analysis_synonym::SynonymParser;
+use pizza_analysis_synonym::SynonymRule;
+use pizza_engine::analysis::AnalysisFactory;
+use pizza_engine::analysis::Token;
+use pizza_engine::analysis::TokenFilter;
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // Helpers

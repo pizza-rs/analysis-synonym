@@ -4,7 +4,8 @@ use alloc::boxed::Box;
 
 use pizza_engine::analysis::AnalysisFactory;
 
-use crate::filter::{SynonymFilter, SynonymGraphFilter};
+use crate::filter::SynonymFilter;
+use crate::filter::SynonymGraphFilter;
 
 /// Register synonym token filters into the factory.
 ///

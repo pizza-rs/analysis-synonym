@@ -10,9 +10,11 @@ use alloc::sync::Arc;
 use alloc::vec::Vec;
 use spin::RwLock;
 
-use pizza_engine::analysis::{Token, TokenFilter};
+use pizza_engine::analysis::Token;
+use pizza_engine::analysis::TokenFilter;
 
-use crate::parser::{SynonymMap, SynonymRule};
+use crate::parser::SynonymMap;
+use crate::parser::SynonymRule;
 
 pub use crate::parser::SynonymMode;
 
@@ -124,10 +126,7 @@ impl SynonymFilter {
         self.map.read().len()
     }
 
-    fn lookup_and_apply<'a>(
-        &self,
-        token: &mut Token<'a>,
-    ) -> (bool, Option<Vec<Token<'a>>>) {
+    fn lookup_and_apply<'a>(&self, token: &mut Token<'a>) -> (bool, Option<Vec<Token<'a>>>) {
         let term = token.term.as_ref();
         if term.is_empty() {
             return (false, None);
@@ -225,10 +224,7 @@ impl SynonymGraphFilter {
         self.map.read().len()
     }
 
-    fn lookup_and_apply<'a>(
-        &self,
-        token: &mut Token<'a>,
-    ) -> (bool, Option<Vec<Token<'a>>>) {
+    fn lookup_and_apply<'a>(&self, token: &mut Token<'a>) -> (bool, Option<Vec<Token<'a>>>) {
         let term = token.term.as_ref();
         if term.is_empty() {
             return (false, None);
